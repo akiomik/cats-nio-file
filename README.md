@@ -12,7 +12,7 @@ cats-nio-file is currently available for Scala 2.12 and 2.13.
 Add the following lines to your `build.sbt`.
 
 ```scala
-resolvers += Resolver.bintrayRepo("akiomik", "maven")
+resolvers += Resolver.jcenterRepo
 
 libraryDependencies += "com.github.akiomik" %% "cats-nio-file" % "1.0.0"
 ```
