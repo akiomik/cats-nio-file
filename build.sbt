@@ -5,7 +5,7 @@ lazy val v2_13 = "2.13.0"
 
 ThisBuild / crossScalaVersions := Seq(v2_13, v2_12)
 ThisBuild / scalaVersion       := crossScalaVersions.value.head
-ThisBuild / version            := "1.0.0-SNAPSHOT"
+ThisBuild / version            := "1.0.0"
 ThisBuild / organization       := "com.github.akiomik"
 ThisBuild / licenses           += ("Apache-2.0", url("https://www.apache.org/licenses/LICENSE-2.0.html"))
 
