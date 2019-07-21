@@ -22,7 +22,7 @@ class FilesTests extends FunSuite with Matchers {
       tempDir  <- Files[IO].createTempDirectory("cats-nio-file")
       file1 = tempDir.resolve(Paths.get("file1.txt"))
       _        <- Files[IO].createFile(file1)
-      _        <- Files[IO].write(file1, content1.lines.toIterable)
+      _        <- Files[IO].write(file1, content1.linesIterator.toSeq)
       file2 = tempDir.resolve(Paths.get("file2.txt"))
       _        <- Files[IO].copy(file1, file2)
       content2 <- Files[IO].readAllLines(file2)
@@ -33,7 +33,7 @@ class FilesTests extends FunSuite with Matchers {
       size     <- Files[IO].size(file3)
       exists3  <- Files[IO].deleteIfExists(file3)
     } yield {
-      content2 should === (content1.lines.toIterable)
+      content2 should === (content1.linesIterator.toSeq)
       exists1  should === (false)
       size     should === (content1.size)
       exists3  should === (true)
