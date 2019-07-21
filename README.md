@@ -1,5 +1,7 @@
 # cats-nio-file
 
+[![Build Status](https://travis-ci.org/akiomik/cats-nio-file.svg?branch=master)](https://travis-ci.org/akiomik/cats-nio-file)
+
 A thin scala wrapper for Java NIO.2, built on cats-effect 🐱
 
 ## Usage
