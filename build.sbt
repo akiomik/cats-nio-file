@@ -7,7 +7,9 @@ ThisBuild / crossScalaVersions := Seq(v2_13, v2_12)
 ThisBuild / scalaVersion       := crossScalaVersions.value.head
 ThisBuild / version            := "1.0.0"
 ThisBuild / organization       := "com.github.akiomik"
+ThisBuild / scmInfo            := Some(ScmInfo(url("https://github.com/akiomik/cats-nio-file"), s"git@github.com:akiomik/cats-nio-file.git"))
 ThisBuild / licenses           += ("Apache-2.0", url("https://www.apache.org/licenses/LICENSE-2.0.html"))
+
 
 lazy val root = (project in file("."))
   .settings(
