@@ -32,7 +32,7 @@ class JavaStreamOpsTests extends FunSuite with Matchers {
         )
 
         IO.pure {
-          stream.iterator.asScala.toVector should === (expected)
+          stream.iterator.asScala.toVector should contain theSameElementsAs (expected)
         }
       }.unsafeRunSync
 

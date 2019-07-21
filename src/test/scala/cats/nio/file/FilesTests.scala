@@ -53,7 +53,7 @@ class FilesTests extends FunSuite with Matchers {
     )
 
     try {
-      files.iterator.asScala.toVector should === (expected)
+      files.iterator.asScala.toVector should contain theSameElementsAs (expected)
     } finally {
       files.close
     }
