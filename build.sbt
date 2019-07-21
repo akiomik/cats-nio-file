@@ -7,10 +7,12 @@ ThisBuild / crossScalaVersions := Seq(v2_13, v2_12)
 ThisBuild / scalaVersion       := crossScalaVersions.value.head
 ThisBuild / version            := "1.0.0-SNAPSHOT"
 ThisBuild / organization       := "com.github.akiomik"
+ThisBuild / licenses           += ("Apache-2.0", url("https://www.apache.org/licenses/LICENSE-2.0.html"))
 
 lazy val root = (project in file("."))
   .settings(
     name := "cats-nio-file",
+    description := "A thin scala wrapper for Java NIO.2, built on cats-effect",
     scalacOptions ++= Seq(
       "-deprecation",
       "-feature",
@@ -27,3 +29,6 @@ lazy val root = (project in file("."))
       scalaTest % Test,
     )
   )
+
+ThisBuild / bintrayRepository := "maven"
+ThisBuild / bintrayOrganization := None
