@@ -1,8 +1,21 @@
 # cats-nio-file
 
+[![Download](https://api.bintray.com/packages/akiomik/maven/cats-nio-file/images/download.svg)](https://bintray.com/akiomik/maven/cats-nio-file/_latestVersion)
 [![Build Status](https://travis-ci.org/akiomik/cats-nio-file.svg?branch=master)](https://travis-ci.org/akiomik/cats-nio-file)
 
 A thin scala wrapper for Java NIO.2, built on cats-effect 🐱
+
+## Getting started
+
+cats-nio-file is currently available for Scala 2.12 and 2.13.
+
+Add the following lines to your `build.sbt`.
+
+```scala
+resolvers += Resolver.bintrayRepo("akiomik", "maven")
+
+libraryDependencies += "com.github.akiomik" %% "cats-nio-file" % "1.0.0"
+```
 
 ## Usage
 
