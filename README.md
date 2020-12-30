@@ -1,7 +1,7 @@
 # cats-nio-file
 
 [![Download](https://api.bintray.com/packages/akiomik/maven/cats-nio-file/images/download.svg)](https://bintray.com/akiomik/maven/cats-nio-file/_latestVersion)
-[![Build Status](https://travis-ci.org/akiomik/cats-nio-file.svg?branch=master)](https://travis-ci.org/akiomik/cats-nio-file)
+[![Scala CI](https://github.com/akiomik/cats-nio-file/workflows/Scala%20CI/badge.svg)](https://github.com/akiomik/cats-nio-file/actions?query=workflow%3A%22Scala+CI%22)
 
 A thin scala wrapper for Java NIO.2, built on cats-effect 🐱
 
