@@ -51,14 +51,14 @@ class FilesTests extends FunSuite with Matchers {
       exists1  should === (false)
       size     should === (content1.size)
       exists3  should === (true)
-    }).unsafeRunSync
+    }).unsafeRunSync()
   }
 
   test("find") {
     val files =
       Files[IO]
         .find(Paths.get("src"), 100, (path, _) => path.toString.endsWith(".scala"))
-        .unsafeRunSync
+        .unsafeRunSync()
     val expected = Vector(
       Paths.get("src/test/scala/cats/nio/file/JavaStreamOpsTests.scala"),
       Paths.get("src/test/scala/cats/nio/file/FilesTests.scala"),
