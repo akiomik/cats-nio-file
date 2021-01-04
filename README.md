@@ -14,7 +14,7 @@ Add the following lines to your `build.sbt`.
 ```scala
 resolvers += Resolver.jcenterRepo
 
-libraryDependencies += "com.github.akiomik" %% "cats-nio-file" % "1.1.0"
+libraryDependencies += "com.github.akiomik" %% "cats-nio-file" % "1.2.0"
 ```
 
 ## All releases
@@ -25,6 +25,7 @@ cats-nio-file supports some different versions of cats-effect.
 | --------------------- | ------------------- | ------------- |
 | 1.0.1                 | 2.0.x               | 2.12.x/2.13.x |
 | 1.1.0                 | 2.1.x               | 2.12.x/2.13.x |
+| 1.2.0                 | 2.2.x               | 2.12.x/2.13.x |
 
 
 ## Usage
