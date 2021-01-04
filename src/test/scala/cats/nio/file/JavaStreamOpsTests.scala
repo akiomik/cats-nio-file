@@ -16,13 +16,13 @@ package cats.nio.file
 
 import java.nio.file.Paths
 
-import scala.collection.JavaConverters._ // TODO: use scala.jdk.CollectionConverters._
 import scala.concurrent.ExecutionContext
 
 import cats.effect.{ContextShift, IO}
 import org.scalatest.{FunSuite, Matchers}
 
 import cats.nio.file.implicits._
+import cats.nio.file.compat.CollectionConverter._
 
 class JavaStreamOpsTests extends FunSuite with Matchers {
   implicit val ec: ExecutionContext = ExecutionContext.global
@@ -43,6 +43,8 @@ class JavaStreamOpsTests extends FunSuite with Matchers {
           Paths.get("src/test/scala/cats/nio/file/FilesTests.scala"),
           Paths.get("src/main/scala/cats/nio/file/implicits/package.scala"),
           Paths.get("src/main/scala/cats/nio/file/Files.scala"),
+          Paths.get("src/main/scala-2.12/cats/nio/file/compat/package.scala"),
+          Paths.get("src/main/scala-2.13/cats/nio/file/compat/package.scala"),
         )
 
         IO.pure {

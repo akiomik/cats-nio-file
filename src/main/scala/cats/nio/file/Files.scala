@@ -21,12 +21,13 @@ import java.nio.file.attribute._
 import java.nio.channels.SeekableByteChannel
 import java.util.stream.{Stream => JStream}
 
-import scala.collection.JavaConverters._ // TODO: use scala.jdk.CollectionConverters._
 import scala.collection.mutable
 import scala.compat.java8.FunctionConverters._
 import scala.language.higherKinds
 
 import cats.effect.{Sync, IO}
+
+import cats.nio.file.compat.CollectionConverter._
 
 class Files[F[_]](implicit F: Sync[F]) {
   def copy(in: InputStream, target: Path, options: CopyOption*): F[Long] =
