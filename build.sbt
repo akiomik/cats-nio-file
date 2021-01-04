@@ -1,7 +1,7 @@
 import Dependencies._
 
-lazy val v2_12 = "2.12.8"
-lazy val v2_13 = "2.13.0"
+lazy val v2_12 = "2.12.12"
+lazy val v2_13 = "2.13.4"
 
 ThisBuild / crossScalaVersions := Seq(v2_13, v2_12)
 ThisBuild / scalaVersion       := crossScalaVersions.value.head
