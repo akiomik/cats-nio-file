@@ -14,7 +14,7 @@ Add the following lines to your `build.sbt`.
 ```scala
 resolvers += Resolver.jcenterRepo
 
-libraryDependencies += "com.github.akiomik" %% "cats-nio-file" % "1.0.0"
+libraryDependencies += "com.github.akiomik" %% "cats-nio-file" % "1.0.1"
 ```
 
 ## Usage
