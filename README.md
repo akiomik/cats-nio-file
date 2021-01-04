@@ -41,7 +41,7 @@ import cats.nio.file.Files
 // File I/O operations are wrapped with `F[_]` (e.g. `IO`)
 val exists: IO[Boolean] = Files[IO].exists(Paths.get("build.sbt"))
 
-// Java collections are converted to Scala collections through `scala.collection.JavaConverters`
+// Java collections are converted to Scala collections through `scala.jdk.CollectionConverters`
 val perms: IO[mutable.Set[PosixFilePermission]] = Files[IO].getPosixFilePermissions(Paths.get("build.sbt"))
 
 // `IO[JStream[A]]` values are able to convert to `Resource`
