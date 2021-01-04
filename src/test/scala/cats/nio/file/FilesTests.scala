@@ -16,17 +16,13 @@ package cats.nio.file
 
 import java.nio.file.Paths
 
-import scala.concurrent.ExecutionContext
-
-import cats.effect.{ContextShift, IO}
+import cats.effect.IO
+import cats.effect.unsafe.implicits.global
 import org.scalatest.{FunSuite, Matchers}
 
 import cats.nio.file.compat.CollectionConverter._
 
 class FilesTests extends FunSuite with Matchers {
-  implicit val ec: ExecutionContext = ExecutionContext.global
-  implicit val cs: ContextShift[IO] = IO.contextShift(ec)
-
   test("scenario") {
     val content1 =
       """One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin.

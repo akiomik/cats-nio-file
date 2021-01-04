@@ -16,18 +16,14 @@ package cats.nio.file
 
 import java.nio.file.Paths
 
-import scala.concurrent.ExecutionContext
-
-import cats.effect.{ContextShift, IO}
+import cats.effect.IO
+import cats.effect.unsafe.implicits.global
 import org.scalatest.{FunSuite, Matchers}
 
 import cats.nio.file.implicits._
 import cats.nio.file.compat.CollectionConverter._
 
 class JavaStreamOpsTests extends FunSuite with Matchers {
-  implicit val ec: ExecutionContext = ExecutionContext.global
-  implicit val cs: ContextShift[IO] = IO.contextShift(ec)
-
   test("resource") {
     var closed = false
 
@@ -55,4 +51,3 @@ class JavaStreamOpsTests extends FunSuite with Matchers {
     closed should === (true)
   }
 }
-
