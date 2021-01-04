@@ -15,6 +15,7 @@ project/plugins/project/
 .cache
 .lib/
 
+.bsp
 .metals
 .bloop
 project/metals.sbt
