@@ -1,7 +1,7 @@
 # This workflow will launch at 10:00 every Monday
 on:
   schedule:
-    - cron: '0 10 * * 1'
+    - cron: '0 0 * * 1'
 
 jobs:
   scala-steward:
@@ -11,4 +11,4 @@ jobs:
       - name: Launch Scala Steward
         uses: scala-steward-org/scala-steward-action@v2
         with:
-          github-token: ${{ secrets.ADMIN_GITHUB_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
