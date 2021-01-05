@@ -24,7 +24,7 @@ import java.util.stream.{Stream => JStream}
 import scala.collection.mutable
 import scala.compat.java8.FunctionConverters._
 
-import cats.effect.{Sync, IO}
+import cats.effect.{IO, Sync}
 
 import cats.nio.file.compat.CollectionConverter._
 
@@ -71,13 +71,22 @@ class Files[F[_]](implicit F: Sync[F]) {
 
   def exists(path: Path): F[Boolean] = F.delay(JFiles.exists(path))
 
-  def find(start: Path, maxDepth: Int, matcher: (Path, BasicFileAttributes) => Boolean, options: FileVisitOption*): F[JStream[Path]] =
+  def find(
+      start: Path,
+      maxDepth: Int,
+      matcher: (Path, BasicFileAttributes) => Boolean,
+      options: FileVisitOption*
+  ): F[JStream[Path]] =
     F.delay(JFiles.find(start, maxDepth, matcher.asJava, options: _*))
 
   def getAttribute(path: Path, attribute: String, options: LinkOption*): F[Object] =
     F.delay(JFiles.getAttribute(path, attribute, options: _*))
 
-  def getFileAttributeView[A <: FileAttributeView](path: Path, `type`: Class[A], options: LinkOption*): F[A] =
+  def getFileAttributeView[A <: FileAttributeView](
+      path: Path,
+      `type`: Class[A],
+      options: LinkOption*
+  ): F[A] =
     F.delay(JFiles.getFileAttributeView(path, `type`, options: _*))
 
   def getFileStore(path: Path): F[FileStore] = F.delay(JFiles.getFileStore(path))
@@ -88,7 +97,10 @@ class Files[F[_]](implicit F: Sync[F]) {
   def getOwner(path: Path, options: LinkOption*): F[UserPrincipal] =
     F.delay(JFiles.getOwner(path, options: _*))
 
-  def getPosixFilePermissions(path: Path, options: LinkOption*): F[mutable.Set[PosixFilePermission]] =
+  def getPosixFilePermissions(
+      path: Path,
+      options: LinkOption*
+  ): F[mutable.Set[PosixFilePermission]] =
     F.delay(JFiles.getPosixFilePermissions(path, options: _*).asScala)
 
   def isDirectory(path: Path, options: LinkOption*): F[Boolean] =
@@ -131,13 +143,20 @@ class Files[F[_]](implicit F: Sync[F]) {
   def newByteChannel(path: Path, options: OpenOption*): F[SeekableByteChannel] =
     F.delay(JFiles.newByteChannel(path, options: _*))
 
-  def newByteChannel(path: Path, options: Set[_ <: OpenOption], attrs: FileAttribute[_]*): F[SeekableByteChannel] =
+  def newByteChannel(
+      path: Path,
+      options: Set[_ <: OpenOption],
+      attrs: FileAttribute[_]*
+  ): F[SeekableByteChannel] =
     F.delay(JFiles.newByteChannel(path, options.asJava, attrs: _*))
 
   def newDirectoryStream(dir: Path): F[DirectoryStream[Path]] =
     F.delay(JFiles.newDirectoryStream(dir))
 
-  def newDirectoryStream(dir: Path, filter: DirectoryStream.Filter[_ >: Path]): F[DirectoryStream[Path]] =
+  def newDirectoryStream(
+      dir: Path,
+      filter: DirectoryStream.Filter[_ >: Path]
+  ): F[DirectoryStream[Path]] =
     F.delay(JFiles.newDirectoryStream(dir, filter))
 
   def newDirectoryStream(dir: Path, glob: String): F[DirectoryStream[Path]] =
@@ -156,12 +175,21 @@ class Files[F[_]](implicit F: Sync[F]) {
 
   def readAllBytes(path: Path): F[Array[Byte]] = F.delay(JFiles.readAllBytes(path))
 
-  def readAllLines(path: Path): F[mutable.Buffer[String]] = F.delay(JFiles.readAllLines(path).asScala)
+  def readAllLines(path: Path): F[mutable.Buffer[String]] =
+    F.delay(JFiles.readAllLines(path).asScala)
 
-  def readAttributes[A <: BasicFileAttributes](path: Path, `type`: Class[A], options: LinkOption*): F[A] =
+  def readAttributes[A <: BasicFileAttributes](
+      path: Path,
+      `type`: Class[A],
+      options: LinkOption*
+  ): F[A] =
     F.delay(JFiles.readAttributes(path, `type`, options: _*))
 
-  def readAttributes(path: Path, attributes: String, options: LinkOption*): F[mutable.Map[String, Object]] =
+  def readAttributes(
+      path: Path,
+      attributes: String,
+      options: LinkOption*
+  ): F[mutable.Map[String, Object]] =
     F.delay(JFiles.readAttributes(path, attributes, options: _*).asScala)
 
   def readSymbolicLink(link: Path): F[Path] = F.delay(JFiles.readSymbolicLink(link))
@@ -188,13 +216,23 @@ class Files[F[_]](implicit F: Sync[F]) {
   def walkFileTree(start: Path, visitor: FileVisitor[_ >: Path]): F[Path] =
     F.delay(JFiles.walkFileTree(start, visitor))
 
-  def walkFileTree(start: Path, options: Set[FileVisitOption], maxDepth: Int, visitor: FileVisitor[_ >: Path]): F[Path] =
+  def walkFileTree(
+      start: Path,
+      options: Set[FileVisitOption],
+      maxDepth: Int,
+      visitor: FileVisitor[_ >: Path]
+  ): F[Path] =
     F.delay(JFiles.walkFileTree(start, options.asJava, maxDepth, visitor))
 
   def write(path: Path, bytes: Array[Byte], options: OpenOption*): F[Path] =
     F.delay(JFiles.write(path, bytes, options: _*))
 
-  def write(path: Path, lines: Iterable[_ <: CharSequence], cs: Charset, options: OpenOption*): F[Path] =
+  def write(
+      path: Path,
+      lines: Iterable[_ <: CharSequence],
+      cs: Charset,
+      options: OpenOption*
+  ): F[Path] =
     F.delay(JFiles.write(path, lines.asJava, cs, options: _*))
 
   def write(path: Path, lines: Iterable[_ <: CharSequence], options: OpenOption*): F[Path] =
