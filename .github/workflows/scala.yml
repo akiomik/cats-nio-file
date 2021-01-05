@@ -25,7 +25,7 @@ jobs:
           ~/.sbt
         key: ${{ runner.os }}-sbt-${{ hashFiles('**/build.sbt') }}
     - name: Run scalafmt
-      run: sbt 'scalafmtCheckAll'
+      run: sbt 'scalafmtCheckAll; scalafmtSbtCheck'
     - name: Run scalafix
       run: sbt 'scalafix --check'
     - name: Run tests
