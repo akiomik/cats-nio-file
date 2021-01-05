@@ -23,7 +23,6 @@ import java.util.stream.{Stream => JStream}
 
 import scala.collection.mutable
 import scala.compat.java8.FunctionConverters._
-import scala.language.higherKinds
 
 import cats.effect.{Sync, IO}
 
