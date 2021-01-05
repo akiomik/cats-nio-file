@@ -16,8 +16,6 @@ package cats.nio.file
 
 import java.util.stream.{Stream => JStream}
 
-import scala.language.higherKinds
-
 import cats.effect.{Resource, Sync}
 
 package object implicits {
