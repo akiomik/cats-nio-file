@@ -31,21 +31,22 @@ class JavaStreamOpsTests extends FunSuite with Matchers {
       Paths.get("src/main/scala/cats/nio/file/implicits/package.scala"),
       Paths.get("src/main/scala/cats/nio/file/Files.scala"),
       Paths.get("src/main/scala-2.12/cats/nio/file/compat/package.scala"),
-      Paths.get("src/main/scala-2.13/cats/nio/file/compat/package.scala"),
+      Paths.get("src/main/scala-2.13/cats/nio/file/compat/package.scala")
     )
 
     var closed = false
 
     Files[IO]
       .find(Paths.get("src"), 100, (path, _) => path.toString.endsWith(".scala"))
-      .map(_.onClose(() =>
-        closed = true
-      )).resource.use { stream =>
+      .map(_.onClose(() => closed = true))
+      .resource
+      .use { stream =>
         IO.pure {
-          stream.iterator.asScala.toVector should contain theSameElementsAs (expected)
+          stream.iterator.asScala.toVector should contain theSameElementsAs expected
         }
-      }.unsafeRunSync()
+      }
+      .unsafeRunSync()
 
-    closed should === (true)
+    closed should be(true)
   }
 }

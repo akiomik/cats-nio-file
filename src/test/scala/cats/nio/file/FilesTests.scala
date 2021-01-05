@@ -16,7 +16,7 @@ package cats.nio.file
 
 import java.nio.file.Paths
 
-import cats.effect.{Resource, IO}
+import cats.effect.{IO, Resource}
 import cats.effect.unsafe.implicits.global
 import org.scalatest.{FunSuite, Matchers}
 
@@ -31,23 +31,23 @@ class FilesTests extends FunSuite with Matchers {
 
     (for {
       tempDir  <- Files[IO].createTempDirectory("cats-nio-file")
-      file1 = tempDir.resolve(Paths.get("file1.txt"))
+      file1     = tempDir.resolve(Paths.get("file1.txt"))
       _        <- Files[IO].createFile(file1)
       _        <- Files[IO].write(file1, content1.linesIterator.toSeq)
-      file2 = tempDir.resolve(Paths.get("file2.txt"))
+      file2     = tempDir.resolve(Paths.get("file2.txt"))
       _        <- Files[IO].copy(file1, file2)
       content2 <- Files[IO].readAllLines(file2)
       _        <- Files[IO].delete(file1)
       exists1  <- Files[IO].exists(file1)
-      file3 = tempDir.resolve(Paths.get("file3.txt"))
+      file3     = tempDir.resolve(Paths.get("file3.txt"))
       _        <- Files[IO].move(file2, file3)
       size     <- Files[IO].size(file3)
       exists3  <- Files[IO].deleteIfExists(file3)
     } yield {
-      content2 should === (content1.linesIterator.toSeq)
-      exists1  should === (false)
-      size     should === (content1.size)
-      exists3  should === (true)
+      content2 should be(content1.linesIterator.toSeq)
+      exists1 should be(false)
+      size should be(content1.size)
+      exists3 should be(true)
     }).unsafeRunSync()
   }
 
@@ -58,15 +58,18 @@ class FilesTests extends FunSuite with Matchers {
       Paths.get("src/main/scala/cats/nio/file/implicits/package.scala"),
       Paths.get("src/main/scala/cats/nio/file/Files.scala"),
       Paths.get("src/main/scala-2.12/cats/nio/file/compat/package.scala"),
-      Paths.get("src/main/scala-2.13/cats/nio/file/compat/package.scala"),
+      Paths.get("src/main/scala-2.13/cats/nio/file/compat/package.scala")
     )
 
-    Resource.fromAutoCloseable {
-      Files[IO].find(Paths.get("src"), 100, (path, _) => path.toString.endsWith(".scala"))
-    }.use { stream =>
-      IO.pure {
-        stream.iterator.asScala.toVector should contain theSameElementsAs (expected)
+    Resource
+      .fromAutoCloseable {
+        Files[IO].find(Paths.get("src"), 100, (path, _) => path.toString.endsWith(".scala"))
       }
-    }.unsafeRunSync()
+      .use { stream =>
+        IO.pure {
+          stream.iterator.asScala.toVector should contain theSameElementsAs expected
+        }
+      }
+      .unsafeRunSync()
   }
 }
