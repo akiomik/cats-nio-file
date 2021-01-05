@@ -25,24 +25,22 @@ import cats.nio.file.compat.CollectionConverter._
 
 class JavaStreamOpsTests extends FunSuite with Matchers {
   test("resource") {
+    val expected = Vector(
+      Paths.get("src/test/scala/cats/nio/file/JavaStreamOpsTests.scala"),
+      Paths.get("src/test/scala/cats/nio/file/FilesTests.scala"),
+      Paths.get("src/main/scala/cats/nio/file/implicits/package.scala"),
+      Paths.get("src/main/scala/cats/nio/file/Files.scala"),
+      Paths.get("src/main/scala-2.12/cats/nio/file/compat/package.scala"),
+      Paths.get("src/main/scala-2.13/cats/nio/file/compat/package.scala"),
+    )
+
     var closed = false
 
     Files[IO]
       .find(Paths.get("src"), 100, (path, _) => path.toString.endsWith(".scala"))
-      .map(_.onClose(new Runnable {
-        def run = {
-          closed = true
-        }
-      })).resource.use { stream =>
-        val expected = Vector(
-          Paths.get("src/test/scala/cats/nio/file/JavaStreamOpsTests.scala"),
-          Paths.get("src/test/scala/cats/nio/file/FilesTests.scala"),
-          Paths.get("src/main/scala/cats/nio/file/implicits/package.scala"),
-          Paths.get("src/main/scala/cats/nio/file/Files.scala"),
-          Paths.get("src/main/scala-2.12/cats/nio/file/compat/package.scala"),
-          Paths.get("src/main/scala-2.13/cats/nio/file/compat/package.scala"),
-        )
-
+      .map(_.onClose(() =>
+        closed = true
+      )).resource.use { stream =>
         IO.pure {
           stream.iterator.asScala.toVector should contain theSameElementsAs (expected)
         }

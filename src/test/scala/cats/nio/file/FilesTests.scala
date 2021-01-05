@@ -16,7 +16,7 @@ package cats.nio.file
 
 import java.nio.file.Paths
 
-import cats.effect.IO
+import cats.effect.{Resource, IO}
 import cats.effect.unsafe.implicits.global
 import org.scalatest.{FunSuite, Matchers}
 
@@ -52,10 +52,6 @@ class FilesTests extends FunSuite with Matchers {
   }
 
   test("find") {
-    val files =
-      Files[IO]
-        .find(Paths.get("src"), 100, (path, _) => path.toString.endsWith(".scala"))
-        .unsafeRunSync()
     val expected = Vector(
       Paths.get("src/test/scala/cats/nio/file/JavaStreamOpsTests.scala"),
       Paths.get("src/test/scala/cats/nio/file/FilesTests.scala"),
@@ -65,10 +61,12 @@ class FilesTests extends FunSuite with Matchers {
       Paths.get("src/main/scala-2.13/cats/nio/file/compat/package.scala"),
     )
 
-    try {
-      files.iterator.asScala.toVector should contain theSameElementsAs (expected)
-    } finally {
-      files.close
-    }
+    Resource.fromAutoCloseable {
+      Files[IO].find(Paths.get("src"), 100, (path, _) => path.toString.endsWith(".scala"))
+    }.use { stream =>
+      IO.pure {
+        stream.iterator.asScala.toVector should contain theSameElementsAs (expected)
+      }
+    }.unsafeRunSync()
   }
 }
