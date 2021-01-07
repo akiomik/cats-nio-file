@@ -1,4 +1,4 @@
-# This workflow will launch at 10:00 every Monday
+# This workflow will launch at 9:00 every Monday in JST
 on:
   schedule:
     - cron: '0 0 * * 1'
