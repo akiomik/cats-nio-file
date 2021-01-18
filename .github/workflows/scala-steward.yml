@@ -1,3 +1,5 @@
+name: Scala Steward
+
 # This workflow will launch at 9:00 every Monday in JST
 on:
   schedule:
