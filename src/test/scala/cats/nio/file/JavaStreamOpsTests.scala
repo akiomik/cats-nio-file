@@ -18,12 +18,13 @@ import java.nio.file.Paths
 
 import cats.effect.IO
 import cats.effect.unsafe.implicits.global
-import org.scalatest.{FunSuite, Matchers}
 
 import cats.nio.file.implicits._
 import cats.nio.file.compat.CollectionConverter._
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers
 
-class JavaStreamOpsTests extends FunSuite with Matchers {
+class JavaStreamOpsTests extends AnyFunSuite with Matchers {
   test("resource") {
     val expected = Vector(
       Paths.get("src/test/scala/cats/nio/file/JavaStreamOpsTests.scala"),
