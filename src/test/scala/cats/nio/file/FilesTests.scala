@@ -18,11 +18,12 @@ import java.nio.file.Paths
 
 import cats.effect.{IO, Resource}
 import cats.effect.unsafe.implicits.global
-import org.scalatest.{FunSuite, Matchers}
 
 import cats.nio.file.compat.CollectionConverter._
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers
 
-class FilesTests extends FunSuite with Matchers {
+class FilesTests extends AnyFunSuite with Matchers {
   test("scenario") {
     val content1 =
       """One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin.
