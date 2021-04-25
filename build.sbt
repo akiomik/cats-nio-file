@@ -5,8 +5,8 @@ lazy val v2_13 = "2.13.4"
 
 crossScalaVersions := Seq(v2_13, v2_12)
 scalaVersion := crossScalaVersions.value.head
-version := "1.3.0"
-organization := "com.github.akiomik"
+version := "1.4.0"
+organization := "io.github.akiomik"
 homepage := Some(url("https://github.com/akiomik/cats-nio-file"))
 scmInfo := Some(
   ScmInfo(
