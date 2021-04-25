@@ -7,6 +7,7 @@ crossScalaVersions := Seq(v2_13, v2_12)
 scalaVersion := crossScalaVersions.value.head
 version := "1.3.0"
 organization := "com.github.akiomik"
+homepage := Some(url("https://github.com/akiomik/cats-nio-file"))
 scmInfo := Some(
   ScmInfo(
     url("https://github.com/akiomik/cats-nio-file"),
@@ -14,6 +15,14 @@ scmInfo := Some(
   )
 )
 licenses += ("Apache-2.0", url("https://www.apache.org/licenses/LICENSE-2.0.html"))
+developers := List(
+  Developer(
+    id = "akiomik",
+    name = "Akiomi Kamakura",
+    email = "akiomik@gmail.com",
+    url = url("https://github.com/akiomik")
+  )
+)
 semanticdbEnabled := true
 semanticdbVersion := scalafixSemanticdb.revision
 
@@ -39,5 +48,4 @@ lazy val root = (project in file("."))
     )
   )
 
-bintrayRepository := "maven"
-bintrayOrganization := None
+publishTo := sonatypePublishToBundle.value
