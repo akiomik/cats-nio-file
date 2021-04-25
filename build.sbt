@@ -48,4 +48,6 @@ lazy val root = (project in file("."))
     )
   )
 
+sonatypeCredentialHost := "s01.oss.sonatype.org"
 publishTo := sonatypePublishToBundle.value
+publishMavenStyle := true
