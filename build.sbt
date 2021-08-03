@@ -44,7 +44,8 @@ lazy val root = (project in file("."))
     libraryDependencies ++= Seq(
       scalaJava8Compat,
       catsEffect,
-      scalaTest % Test
+      scalaTest                  % Test,
+      catsEffectTestingScalaTest % Test
     )
   )
 

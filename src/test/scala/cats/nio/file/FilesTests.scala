@@ -17,20 +17,20 @@ package cats.nio.file
 import java.nio.file.Paths
 
 import cats.effect.{IO, Resource}
-import cats.effect.unsafe.implicits.global
 
+import cats.effect.testing.scalatest.AsyncIOSpec
 import cats.nio.file.compat.CollectionConverter._
-import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.funsuite.AsyncFunSuite
 import org.scalatest.matchers.should.Matchers
 
-class FilesTests extends AnyFunSuite with Matchers {
+class FilesTests extends AsyncFunSuite with AsyncIOSpec with Matchers {
   test("scenario") {
     val content1 =
       """One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin.
         |He lay on his armour-like back, and if he lifted his head a little he could see his brown belly, slightly domed and divided by arches into stiff sections.
         |""".stripMargin
 
-    (for {
+    for {
       tempDir  <- Files[IO].createTempDirectory("cats-nio-file")
       file1     = tempDir.resolve(Paths.get("file1.txt"))
       _        <- Files[IO].createFile(file1)
@@ -49,7 +49,7 @@ class FilesTests extends AnyFunSuite with Matchers {
       exists1 should be(false)
       size should be(content1.size)
       exists3 should be(true)
-    }).unsafeRunSync()
+    }
   }
 
   test("find") {
@@ -67,10 +67,10 @@ class FilesTests extends AnyFunSuite with Matchers {
         Files[IO].find(Paths.get("src"), 100, (path, _) => path.toString.endsWith(".scala"))
       }
       .use { stream =>
-        IO.pure {
-          stream.iterator.asScala.toVector should contain theSameElementsAs expected
-        }
+        IO.pure(stream.iterator.asScala.toVector)
       }
-      .unsafeRunSync()
+      .asserting { actual =>
+        actual should contain theSameElementsAs expected
+      }
   }
 }

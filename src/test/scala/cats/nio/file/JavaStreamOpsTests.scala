@@ -17,14 +17,14 @@ package cats.nio.file
 import java.nio.file.Paths
 
 import cats.effect.IO
-import cats.effect.unsafe.implicits.global
 
+import cats.effect.testing.scalatest.AsyncIOSpec
 import cats.nio.file.implicits._
 import cats.nio.file.compat.CollectionConverter._
-import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.funsuite.AsyncFunSuite
 import org.scalatest.matchers.should.Matchers
 
-class JavaStreamOpsTests extends AnyFunSuite with Matchers {
+class JavaStreamOpsTests extends AsyncFunSuite with AsyncIOSpec with Matchers {
   test("resource") {
     val expected = Vector(
       Paths.get("src/test/scala/cats/nio/file/JavaStreamOpsTests.scala"),
@@ -42,12 +42,11 @@ class JavaStreamOpsTests extends AnyFunSuite with Matchers {
       .map(_.onClose(() => closed = true))
       .resource
       .use { stream =>
-        IO.pure {
-          stream.iterator.asScala.toVector should contain theSameElementsAs expected
-        }
+        IO.pure(stream.iterator.asScala.toVector)
       }
-      .unsafeRunSync()
-
-    closed should be(true)
+      .asserting { actual =>
+        actual should contain theSameElementsAs expected
+        closed should be(true)
+      }
   }
 }
