@@ -1,9 +1,10 @@
 import Dependencies._
 
-lazy val v2_12 = "2.12.12"
-lazy val v2_13 = "2.13.4"
+lazy val v2_12 = "2.12.14"
+lazy val v2_13 = "2.13.6"
+lazy val v3_0  = "3.0.1"
 
-crossScalaVersions := Seq(v2_13, v2_12)
+crossScalaVersions := Seq(v3_0, v2_13, v2_12)
 scalaVersion := crossScalaVersions.value.head
 version := "1.5.0"
 organization := "io.github.akiomik"
@@ -26,6 +27,10 @@ developers := List(
 semanticdbEnabled := true
 semanticdbVersion := scalafixSemanticdb.revision
 
+lazy val scala2scalacOptions =
+  Seq("-Xlint", "-Ywarn-dead-code", "-Ywarn-numeric-widen", "-Ywarn-value-discard")
+lazy val scala3scalacOptions = Seq.empty
+
 lazy val root = (project in file("."))
   .settings(
     name := "cats-nio-file",
@@ -35,12 +40,8 @@ lazy val root = (project in file("."))
       "-feature",
       "-unchecked",
       "-language:higherKinds",
-      "-Xlint",
-      "-Ywarn-dead-code",
-      "-Ywarn-numeric-widen",
-      "-Ywarn-unused",
-      "-Ywarn-value-discard"
-    ),
+      "-Ywarn-unused" // This option is ignored in scala 3 but need for scalafix
+    ) ++ (if (scalaVersion.value.startsWith("3.0")) scala3scalacOptions else scala2scalacOptions),
     libraryDependencies ++= Seq(
       scalaJava8Compat,
       catsEffect,

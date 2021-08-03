@@ -32,7 +32,8 @@ class JavaStreamOpsTests extends AsyncFunSuite with AsyncIOSpec with Matchers {
       Paths.get("src/main/scala/cats/nio/file/implicits/package.scala"),
       Paths.get("src/main/scala/cats/nio/file/Files.scala"),
       Paths.get("src/main/scala-2.12/cats/nio/file/compat/package.scala"),
-      Paths.get("src/main/scala-2.13/cats/nio/file/compat/package.scala")
+      Paths.get("src/main/scala-2.13/cats/nio/file/compat/package.scala"),
+      Paths.get("src/main/scala-3/cats/nio/file/compat/package.scala")
     )
 
     var closed = false
