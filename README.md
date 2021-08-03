@@ -7,12 +7,12 @@ A thin scala wrapper for Java NIO.2, built on cats-effect 🐱
 
 ## Getting started
 
-cats-nio-file is currently available for Scala 2.12 and 2.13.
+cats-nio-file is currently available for Scala 2.12, 2.13 and 3.0.
 
 Add the following lines to your `build.sbt`.
 
 ```scala
-libraryDependencies += "io.github.akiomik" %% "cats-nio-file" % "1.5.0"
+libraryDependencies += "io.github.akiomik" %% "cats-nio-file" % "1.6.0"
 ```
 
 NOTE: The groupid has been changed from `com.github.akiomik` to `io.github.akiomik` because the maven repository has been changed from bintray to sonatype.
@@ -21,14 +21,15 @@ NOTE: The groupid has been changed from `com.github.akiomik` to `io.github.akiom
 
 cats-nio-file supports some different versions of cats-effect.
 
-| cats-nio-file version | cats-effect version | scala version |
-| --------------------- | ------------------- | ------------- |
-| 1.0.1                 | 2.0.x               | 2.12.x/2.13.x |
-| 1.1.0                 | 2.1.x               | 2.12.x/2.13.x |
-| 1.2.0                 | 2.2.x               | 2.12.x/2.13.x |
-| 1.3.0                 | 2.3.x               | 2.12.x/2.13.x |
-| 1.4.0                 | 3.0.x               | 2.12.x/2.13.x |
-| 1.5.0                 | 3.1.x               | 2.12.x/2.13.x |
+| cats-nio-file version | cats-effect version | scala version       |
+| --------------------- | ------------------- | ------------------- |
+| 1.0.1                 | 2.0.x               | 2.12.x/2.13.x       |
+| 1.1.0                 | 2.1.x               | 2.12.x/2.13.x       |
+| 1.2.0                 | 2.2.x               | 2.12.x/2.13.x       |
+| 1.3.0                 | 2.3.x               | 2.12.x/2.13.x       |
+| 1.4.0                 | 3.0.x               | 2.12.x/2.13.x       |
+| 1.5.0                 | 3.1.x               | 2.12.x/2.13.x       |
+| 1.6.0                 | 3.2.x               | 2.12.x/2.13.x/3.0.x |
 
 ## Usage
 
