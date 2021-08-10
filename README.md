@@ -48,7 +48,7 @@ val exists: IO[Boolean] = Files[IO].exists(Paths.get("build.sbt"))
 // Java collections are converted to Scala collections through `scala.jdk.CollectionConverters`
 val perms: IO[mutable.Set[PosixFilePermission]] = Files[IO].getPosixFilePermissions(Paths.get("build.sbt"))
 
-// `IO[JStream[A]]` values are able to convert to `Resource`
+// `IO[A <: AutoCloseable]` values are able to convert to `Resource[IO, A]` (e.g. `JStream[A]`, `BufferedReader`, `BufferedWriter`, `SeekableByteChannel`, and `DirectoryStream[A]`)
 import cats.nio.file.implicits._
 val list: Resource[IO, JStream[Path]] = Files[IO].list(Paths.get(".")).resource
 ```

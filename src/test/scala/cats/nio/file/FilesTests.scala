@@ -54,7 +54,7 @@ class FilesTests extends AsyncFunSuite with AsyncIOSpec with Matchers {
 
   test("find") {
     val expected = Vector(
-      Paths.get("src/test/scala/cats/nio/file/JavaStreamOpsTests.scala"),
+      Paths.get("src/test/scala/cats/nio/file/AutoCloseableOpsTests.scala"),
       Paths.get("src/test/scala/cats/nio/file/FilesTests.scala"),
       Paths.get("src/main/scala/cats/nio/file/implicits/package.scala"),
       Paths.get("src/main/scala/cats/nio/file/Files.scala"),

@@ -19,7 +19,7 @@ import java.util.stream.{Stream => JStream}
 import cats.effect.{Resource, Sync}
 
 package object implicits {
-  implicit class JavaStreamOps[F[_]: Sync, A](stream: F[JStream[A]]) {
-    def resource: Resource[F, JStream[A]] = Resource.fromAutoCloseable(stream)
+  implicit class AutoCloseableOps[F[_]: Sync, A <: AutoCloseable](closeable: F[A]) {
+    def resource: Resource[F, A] = Resource.fromAutoCloseable(closeable)
   }
 }

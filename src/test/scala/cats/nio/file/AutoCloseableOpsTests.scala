@@ -24,10 +24,10 @@ import cats.nio.file.compat.CollectionConverter._
 import org.scalatest.funsuite.AsyncFunSuite
 import org.scalatest.matchers.should.Matchers
 
-class JavaStreamOpsTests extends AsyncFunSuite with AsyncIOSpec with Matchers {
-  test("resource") {
+class AutoCloseableOpsTests extends AsyncFunSuite with AsyncIOSpec with Matchers {
+  test("resource (JStream)") {
     val expected = Vector(
-      Paths.get("src/test/scala/cats/nio/file/JavaStreamOpsTests.scala"),
+      Paths.get("src/test/scala/cats/nio/file/AutoCloseableOpsTests.scala"),
       Paths.get("src/test/scala/cats/nio/file/FilesTests.scala"),
       Paths.get("src/main/scala/cats/nio/file/implicits/package.scala"),
       Paths.get("src/main/scala/cats/nio/file/Files.scala"),
@@ -48,6 +48,17 @@ class JavaStreamOpsTests extends AsyncFunSuite with AsyncIOSpec with Matchers {
       .asserting { actual =>
         actual should contain theSameElementsAs expected
         closed should be(true)
+      }
+  }
+
+  test("resource (BufferedReader)") {
+    Files[IO].newBufferedReader(Paths.get("LICENSE"))
+      .resource
+      .use { reader =>
+        IO.pure { reader.lines.iterator.asScala.toVector }
+      }
+      .asserting { lines =>
+        lines.size should be(201)
       }
   }
 }
