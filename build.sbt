@@ -5,18 +5,18 @@ lazy val v2_13 = "2.13.6"
 lazy val v3_0  = "3.0.1"
 
 crossScalaVersions := Seq(v3_0, v2_13, v2_12)
-scalaVersion := crossScalaVersions.value.head
-version := "1.6.0"
-organization := "io.github.akiomik"
-homepage := Some(url("https://github.com/akiomik/cats-nio-file"))
-scmInfo := Some(
+scalaVersion       := crossScalaVersions.value.head
+version            := "1.6.0"
+organization       := "io.github.akiomik"
+homepage           := Some(url("https://github.com/akiomik/cats-nio-file"))
+scmInfo            := Some(
   ScmInfo(
     url("https://github.com/akiomik/cats-nio-file"),
     "git@github.com:akiomik/cats-nio-file.git"
   )
 )
 licenses += ("Apache-2.0", url("https://www.apache.org/licenses/LICENSE-2.0.html"))
-developers := List(
+developers         := List(
   Developer(
     id = "akiomik",
     name = "Akiomi Kamakura",
@@ -24,8 +24,8 @@ developers := List(
     url = url("https://github.com/akiomik")
   )
 )
-semanticdbEnabled := true
-semanticdbVersion := scalafixSemanticdb.revision
+semanticdbEnabled  := true
+semanticdbVersion  := scalafixSemanticdb.revision
 
 lazy val scala2scalacOptions =
   Seq("-Xlint", "-Ywarn-dead-code", "-Ywarn-numeric-widen", "-Ywarn-value-discard")
@@ -33,7 +33,7 @@ lazy val scala3scalacOptions = Seq.empty
 
 lazy val root = (project in file("."))
   .settings(
-    name := "cats-nio-file",
+    name        := "cats-nio-file",
     description := "A thin scala wrapper for Java NIO.2, built on cats-effect",
     scalacOptions ++= Seq(
       "-deprecation",
@@ -51,5 +51,5 @@ lazy val root = (project in file("."))
   )
 
 sonatypeCredentialHost := "s01.oss.sonatype.org"
-publishTo := sonatypePublishToBundle.value
-publishMavenStyle := true
+publishTo              := sonatypePublishToBundle.value
+publishMavenStyle      := true
