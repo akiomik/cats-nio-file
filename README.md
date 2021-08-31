@@ -3,7 +3,7 @@
 [![Latest version](https://index.scala-lang.org/akiomik/cats-nio-file/cats-nio-file/latest.svg?color=blue&style=flat)](https://index.scala-lang.org/akiomik/cats-nio-file/cats-nio-file)
 [![Scala CI](https://github.com/akiomik/cats-nio-file/workflows/Scala%20CI/badge.svg)](https://github.com/akiomik/cats-nio-file/actions?query=workflow%3A%22Scala+CI%22)
 
-A thin scala wrapper for Java NIO.2, built on cats-effect 🐱
+A thin scala wrapper for Java NIO.2, built on [cats-effect](https://typelevel.org/cats-effect/) 🐱
 
 ## Getting started
 
