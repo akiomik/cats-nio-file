@@ -23,6 +23,6 @@ jobs:
     - name: Run scalafmt
       run: sbt 'scalafmtCheckAll; scalafmtSbtCheck'
     - name: Run scalafix
-      run: sbt '++ 2.13.6 scalafix --check'
+      run: sbt '++ 2.13.11 scalafix --check'
     - name: Run tests
       run: sbt '+ test'
