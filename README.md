@@ -12,7 +12,7 @@ cats-nio-file is currently available for Scala 2.12, 2.13 and 3.2.
 Add the following lines to your `build.sbt`.
 
 ```scala
-libraryDependencies += "io.github.akiomik" %% "cats-nio-file" % "1.9.0"
+libraryDependencies += "io.github.akiomik" %% "cats-nio-file" % "1.10.0"
 ```
 
 NOTE: The groupid has been changed from `com.github.akiomik` to `io.github.akiomik` because the maven repository has been changed from bintray to sonatype.
@@ -33,6 +33,7 @@ cats-nio-file supports some different versions of cats-effect.
 | 1.7.0                 | 3.3.x               | 2.12.x/2.13.x/3.1.x |
 | 1.8.1                 | 3.3.x               | 2.12.x/2.13.x/3.2.x |
 | 1.9.0                 | 3.4.x               | 2.12.x/2.13.x/3.2.x |
+| 1.10.0                | 3.5.x               | 2.12.x/2.13.x/3.2.x |
 
 ## Usage
 
