@@ -2,9 +2,9 @@ import Dependencies._
 
 lazy val v2_12 = "2.12.14"
 lazy val v2_13 = "2.13.6"
-lazy val v3_1  = "3.1.0"
+lazy val v3_2  = "3.2.2"
 
-crossScalaVersions := Seq(v3_1, v2_13, v2_12)
+crossScalaVersions := Seq(v3_2, v2_13, v2_12)
 scalaVersion       := crossScalaVersions.value.head
 version            := "1.7.0"
 organization       := "io.github.akiomik"
