@@ -1,7 +1,7 @@
 import Dependencies._
 
-lazy val v2_12 = "2.12.14"
-lazy val v2_13 = "2.13.6"
+lazy val v2_12 = "2.12.18"
+lazy val v2_13 = "2.13.11"
 lazy val v3_2  = "3.2.2"
 
 crossScalaVersions := Seq(v3_2, v2_13, v2_12)
